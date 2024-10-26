@@ -21,7 +21,7 @@ if "logro" not in st.session_state:
 
 # Título de la aplicación
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas9</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
@@ -73,6 +73,3 @@ if os.path.exists(archivo_csv):
         file_name="habilidades_tecnicas.csv",
         mime="text/csv"
     )
-
-
-
