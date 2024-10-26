@@ -13,14 +13,14 @@ if 'habilidades_df' not in st.session_state:
 
 # Función para limpiar el formulario después de cada ingreso
 def clear_form():
-    st.session_state["nombre_habilidad"] = ""
-    st.session_state["nivel_dominio"] = "Básico"
-    st.session_state["anos_experiencia"] = 0
-    st.session_state["logro"] = ""
+    st.session_state.setdefault("nombre_habilidad", "")
+    st.session_state.setdefault("nivel_dominio", "Básico")
+    st.session_state.setdefault("anos_experiencia", 0)
+    st.session_state.setdefault("logro", "")
 
 # Encabezado principal
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas    444</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas /// </h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
