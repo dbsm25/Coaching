@@ -20,7 +20,7 @@ def clear_form():
 
 # Encabezado principal
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas    444</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
