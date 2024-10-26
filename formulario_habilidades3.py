@@ -41,13 +41,19 @@ if st.button("Agregar/Actualizar Habilidad"):
     }
     
     # Verificar si la habilidad ya existe y actualizarla
+   
     if "selected_row" in st.session_state and st.session_state.selected_row is not None:
         habilidades_df.iloc[st.session_state.selected_row] = nueva_habilidad
         st.session_state.selected_row = None  # Limpiar selección
         st.success("Habilidad actualizada correctamente.")
     else:
-        habilidades_df = habilidades_df.append(nueva_habilidad, ignore_index=True)
+        # Usar pd.concat para agregar una nueva fila
+        temp_df = pd.DataFrame([nueva_habilidad])
+        habilidades_df = pd.concat([habilidades_df, temp_df], ignore_index=True)
         st.success("Habilidad agregada correctamente.")
+
+
+  
     
     # Guardar el DataFrame en un archivo CSV
     habilidades_df.to_csv("habilidades_tecnicas.csv", index=False)
