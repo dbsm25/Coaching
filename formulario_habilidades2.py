@@ -4,7 +4,7 @@ import os
 
 # Encabezado principal con estilo
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas888</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
@@ -16,14 +16,16 @@ def clear_form():
     st.session_state["anos_experiencia"] = 0
     st.session_state["logro"] = ""
 
-# Función para cargar el CSV o crear uno vacío si no existe
+# Función para cargar o crear el archivo CSV
 def load_habilidades():
     if os.path.exists("habilidades_tecnicas.csv"):
         try:
             return pd.read_csv("habilidades_tecnicas.csv")
         except pd.errors.EmptyDataError:
+            # Si el archivo está vacío, devuelve un DataFrame con las columnas necesarias
             return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
     else:
+        # Si no existe, crea un DataFrame vacío con las columnas adecuadas
         return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
 
 # Cargar habilidades previas
@@ -47,6 +49,8 @@ if st.button("Agregar Habilidad"):
         "Años de Experiencia": [anos_experiencia],
         "Ejemplo de Uso/Logro Específico": [logro]
     })
+
+    # Concatenar la nueva habilidad al DataFrame cargado
     habilidades_df = pd.concat([habilidades_df, nueva_habilidad], ignore_index=True)
     
     # Guardar en el CSV sin sobrescribir el contenido anterior
@@ -69,3 +73,4 @@ if not habilidades_df.empty:
         file_name="habilidades_tecnicas.csv",
         mime="text/csv"
     )
+
