@@ -1,55 +1,57 @@
 import streamlit as st
 import pandas as pd
+import os
 
 # Encabezado principal con estilo
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas88</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas111</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
 
-# Nombre del archivo CSV
-csv_file = "habilidades_tecnicas.csv"
+# Función para limpiar el formulario después de enviar la habilidad
+def clear_form():
+    st.session_state["nombre_habilidad"] = ""
+    st.session_state["nivel_dominio"] = "Básico"
+    st.session_state["anos_experiencia"] = 0
+    st.session_state["logro"] = ""
 
-# Leer el archivo CSV existente o crear un DataFrame vacío si no existe
-try:
-    habilidades_df = pd.read_csv(csv_file)
-except FileNotFoundError:
-    habilidades_df = pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
+# Función para cargar el CSV o crear uno vacío si no existe
+def load_habilidades():
+    if os.path.exists("habilidades_tecnicas.csv"):
+        return pd.read_csv("habilidades_tecnicas.csv")
+    else:
+        return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
+
+# Cargar habilidades previas
+habilidades_df = load_habilidades()
 
 # Formulario de entrada de datos
 st.markdown("<h2 style='color: #4CAF50;'>Ingrese los detalles de su habilidad técnica</h2>", unsafe_allow_html=True)
 
-# Campos del formulario con emojis
-nombre_habilidad = st.text_input("🛠️ Nombre de la Habilidad Técnica", key="nombre_habilidad")
-nivel_dominio = st.selectbox("📊 Nivel de Dominio", ["Básico", "Intermedio", "Avanzado"], key="nivel_dominio")
-anos_experiencia = st.number_input("📅 Años de Experiencia", min_value=0, step=1, key="anos_experiencia")
-logro = st.text_area("🏆 Ejemplo de Uso/Logro Específico", key="logro")
+# Campos del formulario con valores predeterminados en 'session_state' para poder limpiar
+nombre_habilidad = st.text_input("Nombre de la Habilidad Técnica", key="nombre_habilidad")
+nivel_dominio = st.selectbox("Nivel de Dominio", ["Básico", "Intermedio", "Avanzado"], key="nivel_dominio")
+anos_experiencia = st.number_input("Años de Experiencia", min_value=0, step=1, key="anos_experiencia")
+logro = st.text_area("Ejemplo de Uso/Logro Específico", key="logro")
 
 # Botón para agregar la habilidad
 if st.button("Agregar Habilidad"):
-    # Crear un diccionario con los datos de la nueva habilidad
+    # Crear un nuevo registro y añadirlo al DataFrame actual
     nueva_habilidad = {
         "Nombre de la Habilidad": nombre_habilidad,
         "Nivel de Dominio": nivel_dominio,
         "Años de Experiencia": anos_experiencia,
         "Ejemplo de Uso/Logro Específico": logro
     }
-    
-    # Añadir la nueva habilidad al DataFrame
     habilidades_df = habilidades_df.append(nueva_habilidad, ignore_index=True)
     
-    # Guardar el DataFrame actualizado en el archivo CSV (acumulando los datos)
-    habilidades_df.to_csv(csv_file, index=False)
-    
-    # Confirmación de éxito
+    # Guardar en el CSV sin sobrescribir el contenido anterior
+    habilidades_df.to_csv("habilidades_tecnicas.csv", index=False)
     st.success("Habilidad agregada correctamente.")
-
-    # Limpiar el formulario después de agregar la habilidad
-    st.session_state["nombre_habilidad"] = ""
-    st.session_state["nivel_dominio"] = "Básico"
-    st.session_state["anos_experiencia"] = 0
-    st.session_state["logro"] = ""
+    
+    # Limpiar el formulario
+    clear_form()
 
 # Mostrar la tabla de habilidades ingresadas
 if not habilidades_df.empty:
