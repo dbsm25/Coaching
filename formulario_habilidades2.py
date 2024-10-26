@@ -4,7 +4,7 @@ import os
 
 # Encabezado principal con estilo
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas111</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
@@ -19,7 +19,10 @@ def clear_form():
 # Función para cargar el CSV o crear uno vacío si no existe
 def load_habilidades():
     if os.path.exists("habilidades_tecnicas.csv"):
-        return pd.read_csv("habilidades_tecnicas.csv")
+        try:
+            return pd.read_csv("habilidades_tecnicas.csv")
+        except pd.errors.EmptyDataError:
+            return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
     else:
         return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
 
@@ -38,13 +41,13 @@ logro = st.text_area("Ejemplo de Uso/Logro Específico", key="logro")
 # Botón para agregar la habilidad
 if st.button("Agregar Habilidad"):
     # Crear un nuevo registro y añadirlo al DataFrame actual
-    nueva_habilidad = {
-        "Nombre de la Habilidad": nombre_habilidad,
-        "Nivel de Dominio": nivel_dominio,
-        "Años de Experiencia": anos_experiencia,
-        "Ejemplo de Uso/Logro Específico": logro
-    }
-    habilidades_df = habilidades_df.append(nueva_habilidad, ignore_index=True)
+    nueva_habilidad = pd.DataFrame({
+        "Nombre de la Habilidad": [nombre_habilidad],
+        "Nivel de Dominio": [nivel_dominio],
+        "Años de Experiencia": [anos_experiencia],
+        "Ejemplo de Uso/Logro Específico": [logro]
+    })
+    habilidades_df = pd.concat([habilidades_df, nueva_habilidad], ignore_index=True)
     
     # Guardar en el CSV sin sobrescribir el contenido anterior
     habilidades_df.to_csv("habilidades_tecnicas.csv", index=False)
