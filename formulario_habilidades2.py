@@ -4,10 +4,20 @@ import os
 
 # Encabezado principal con estilo
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas777</h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
+
+# Inicializar claves en session_state si no existen
+if "nombre_habilidad" not in st.session_state:
+    st.session_state["nombre_habilidad"] = ""
+if "nivel_dominio" not in st.session_state:
+    st.session_state["nivel_dominio"] = "Básico"
+if "anos_experiencia" not in st.session_state:
+    st.session_state["anos_experiencia"] = 0
+if "logro" not in st.session_state:
+    st.session_state["logro"] = ""
 
 # Función para limpiar el formulario después de enviar la habilidad
 def clear_form():
@@ -22,10 +32,8 @@ def load_habilidades():
         try:
             return pd.read_csv("habilidades_tecnicas.csv")
         except pd.errors.EmptyDataError:
-            # Si el archivo está vacío, devuelve un DataFrame con las columnas necesarias
             return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
     else:
-        # Si no existe, crea un DataFrame vacío con las columnas adecuadas
         return pd.DataFrame(columns=["Nombre de la Habilidad", "Nivel de Dominio", "Años de Experiencia", "Ejemplo de Uso/Logro Específico"])
 
 # Cargar habilidades previas
@@ -73,4 +81,5 @@ if not habilidades_df.empty:
         file_name="habilidades_tecnicas.csv",
         mime="text/csv"
     )
+
 
