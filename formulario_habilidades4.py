@@ -33,13 +33,13 @@ def clear_form():
 
 # Encabezado principal
 st.markdown(
-    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades_Técnicas Multiple 4 </h1>",
+    "<h1 style='text-align: center; color: #4CAF50;'>Formato de Evaluación de Habilidades Técnicas</h1>",
     unsafe_allow_html=True
 )
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
 
 # Formulario de entrada de datos para habilidades técnicas
-st.markdown("<h2 style='color: #4CAF50;'>Seccion 1 : Ingrese los detalles de su habilidad técnica</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #4CAF50;'>Sección 1 : Ingrese los detalles de su habilidad técnica</h2>", unsafe_allow_html=True)
 
 # Campos del formulario
 nombre_habilidad = st.text_input("Nombre de la Habilidad Técnica", key="nombre_habilidad")
@@ -81,7 +81,7 @@ if not st.session_state.habilidades_df.empty:
     )
 
 # Sección para Objetivos SMART
-st.markdown("<h2 style='color: #4CAF50;'Formato de Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #4CAF50;'>Sección 2 : Formato de Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
 st.markdown("<p>Objetivo: Establecer un objetivo claro y alcanzable para guiar el proceso de recolocación.</p>", unsafe_allow_html=True)
 
 # Campos del formulario SMART
@@ -113,7 +113,7 @@ if st.button("Agregar Objetivo SMART"):
 
 # Mostrar la tabla de objetivos SMART ingresados
 if not st.session_state.objetivos_smart_df.empty:
-    st.header("Seccion 2 : Resumen de Objetivos SMART")
+    st.header("Resumen de Objetivos SMART")
     st.table(st.session_state.objetivos_smart_df)
 
     # Botón para descargar en formato CSV
@@ -124,3 +124,4 @@ if not st.session_state.objetivos_smart_df.empty:
         file_name="objetivos_smart.csv",
         mime="text/csv"
     )
+
