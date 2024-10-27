@@ -81,7 +81,7 @@ if not st.session_state.habilidades_df.empty:
     )
 
 # Sección para Objetivos SMART
-st.markdown("<h2 style='color: #4CAF50;'>Formato de Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #4CAF50;'Formato de Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
 st.markdown("<p>Objetivo: Establecer un objetivo claro y alcanzable para guiar el proceso de recolocación.</p>", unsafe_allow_html=True)
 
 # Campos del formulario SMART
