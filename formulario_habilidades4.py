@@ -152,3 +152,4 @@ else:
         pdf_file = crear_pdf()
         with open(pdf_file, "rb") as pdf:
             st.download_button(label="Descargar PDF con Resumen", data=pdf, file_name="resumen_habilidades_objetivos.pdf", mime="application/pdf")
+
