@@ -59,6 +59,18 @@ def crear_pdf():
 
     return "resumen_habilidades_objetivos.pdf"
 
+# Función para eliminar una habilidad técnica
+def eliminar_habilidad(index):
+    st.session_state.habilidades_df.drop(index, inplace=True)
+    st.session_state.habilidades_df.reset_index(drop=True, inplace=True)
+    st.session_state.habilidades_df.to_csv("habilidades_tecnicas.csv", index=False)
+
+# Función para eliminar un objetivo SMART
+def eliminar_objetivo(index):
+    st.session_state.objetivos_smart_df.drop(index, inplace=True)
+    st.session_state.objetivos_smart_df.reset_index(drop=True, inplace=True)
+    st.session_state.objetivos_smart_df.to_csv("objetivos_smart.csv", index=False)
+
 # Si no está autenticado, muestra la pantalla de autenticación
 if not st.session_state.authenticated:
     authenticate()
@@ -114,9 +126,11 @@ else:
 
     if not st.session_state.habilidades_df.empty:
         st.header("Resumen de Habilidades Técnicas")
-        st.table(st.session_state.habilidades_df)
-        csv = st.session_state.habilidades_df.to_csv(index=False).encode("utf-8")
-        st.download_button(label="Descargar habilidades en CSV", data=csv, file_name="habilidades_tecnicas.csv", mime="text/csv")
+        for index, row in st.session_state.habilidades_df.iterrows():
+            st.write(f"{row['Nombre de la Habilidad']} - {row['Nivel de Dominio']} - {row['Años de Experiencia']} años - {row['Ejemplo de Uso/Logro Específico']}")
+            if st.button(f"Eliminar Habilidad {index}"):
+                eliminar_habilidad(index)
+                st.experimental_rerun()
 
     st.markdown("<h2 style='color: #000080;'>Sección 2 : Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
     st.markdown("<p>Objetivo: Establecer un objetivo claro y alcanzable para guiar el proceso de recolocación.</p>", unsafe_allow_html=True)
@@ -143,13 +157,4 @@ else:
 
     if not st.session_state.objetivos_smart_df.empty:
         st.header("Resumen de Objetivos SMART")
-        st.table(st.session_state.objetivos_smart_df)
-        csv_smart = st.session_state.objetivos_smart_df.to_csv(index=False).encode("utf-8")
-        st.download_button(label="Descargar objetivos SMART en CSV", data=csv_smart, file_name="objetivos_smart.csv", mime="text/csv")
-
-    # Botón para crear y descargar el PDF
-    if st.button("Crear PDF con Resumen"):
-        pdf_file = crear_pdf()
-        with open(pdf_file, "rb") as pdf:
-            st.download_button(label="Descargar PDF con Resumen", data=pdf, file_name="resumen_habilidades_objetivos.pdf", mime="application/pdf")
-
+        for index, row in st.session_state.objetivos_smart_df
