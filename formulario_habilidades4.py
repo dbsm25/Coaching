@@ -81,7 +81,7 @@ if not st.session_state.habilidades_df.empty:
     )
 
 # Sección para Objetivos SMART
-st.markdown("<h2 style='color: #4CAF50;'>Sección 2 : Formato de Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #000080;'>Sección 2 : Definición de Objetivos SMART</h2>", unsafe_allow_html=True)
 st.markdown("<p>Objetivo: Establecer un objetivo claro y alcanzable para guiar el proceso de recolocación.</p>", unsafe_allow_html=True)
 
 # Campos del formulario SMART
@@ -91,7 +91,7 @@ alcanzable = st.text_area("Alcanzable: Factores que lo hacen alcanzable", key="a
 relevante = st.text_area("Relevante: Explicación de por qué es importante", key="relevante")
 temporal = st.text_area("Temporal: Plazo para cumplir el objetivo, con hitos clave", key="temporal")
 
-# Botón para agregar el objetivo SMART
+# Botón para agregar el objetivo SMART 
 if st.button("Agregar Objetivo SMART"):
     # Agregar el objetivo ingresado al DataFrame de sesión
     nuevo_objetivo = {
