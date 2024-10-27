@@ -157,4 +157,6 @@ else:
 
     if not st.session_state.objetivos_smart_df.empty:
         st.header("Resumen de Objetivos SMART")
-        for index, row in st.session_state.objetivos_smart_df
+        for index, row in st.session_state.objetivos_smart_df.iterrows():
+            st.write(f"{row['Específico']} - {row['Medible']} - {row['Alcanzable']}
+
