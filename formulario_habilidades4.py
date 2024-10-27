@@ -155,8 +155,13 @@ else:
         st.success("Objetivo SMART agregado correctamente.")
         clear_form()
 
+
     if not st.session_state.objetivos_smart_df.empty:
         st.header("Resumen de Objetivos SMART")
         for index, row in st.session_state.objetivos_smart_df.iterrows():
-            st.write(f"{row['Específico']} - {row['Medible']} - {row['Alcanzable']}
+            st.write(f"{row['Específico']} - {row['Medible']} - {row['Alcanzable']} - {row['Relevante']} - {row['Temporal']}")
+        if st.button(f"Eliminar Objetivo {index}"):
+            eliminar_objetivo(index)
+            st.experimental_rerun()
+            
 
