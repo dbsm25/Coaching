@@ -39,7 +39,7 @@ st.markdown(
 st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
 
 # Formulario de entrada de datos para habilidades técnicas
-st.markdown("<h2 style='color: #4CAF50;'>Ingrese los detalles de su habilidad técnica</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #4CAF50;'>Seccion 1 : Ingrese los detalles de su habilidad técnica</h2>", unsafe_allow_html=True)
 
 # Campos del formulario
 nombre_habilidad = st.text_input("Nombre de la Habilidad Técnica", key="nombre_habilidad")
@@ -113,7 +113,7 @@ if st.button("Agregar Objetivo SMART"):
 
 # Mostrar la tabla de objetivos SMART ingresados
 if not st.session_state.objetivos_smart_df.empty:
-    st.header("Resumen de Objetivos SMART")
+    st.header("Seccion 2 : Resumen de Objetivos SMART")
     st.table(st.session_state.objetivos_smart_df)
 
     # Botón para descargar en formato CSV
