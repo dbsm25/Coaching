@@ -30,7 +30,7 @@ def crear_pdf():
     pdf.set_font("Arial", size=12)
 
     # Título del PDF
-    pdf.cell(200, 10, txt="Resumen de Habilidades Técnicas", ln=True, align='C')
+    pdf.cell(200, 10, txt="Resumen de Habilidades Técnicas 4", ln=True, align='C')
     pdf.ln(10)
 
     # Añadir datos del CSV de Habilidades Técnicas
