@@ -98,7 +98,7 @@ else:
         st.session_state.setdefault("temporal", "")
 
     # Encabezado principal
-    st.markdown("<h1 style='text-align: center; color: #4CAF50;'>Evaluación de Habilidades Técnicas</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #4CAF50;'>Evaluación de Habilidades Técnicas 4.0</h1>", unsafe_allow_html=True)
     st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
 
     # Formulario de entrada de datos para habilidades técnicas
