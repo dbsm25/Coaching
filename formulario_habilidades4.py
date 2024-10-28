@@ -30,7 +30,7 @@ def crear_pdf():
     pdf.set_font("Arial", size=12)
 
     # Título del PDF
-    pdf.cell(200, 10, txt="Resumen de Habilidades Técnicas 4", ln=True, align='C')
+    pdf.cell(200, 10, txt="Resumen de Habilidades Técnicas", ln=True, align='C')
     pdf.ln(10)
 
     # Añadir datos del CSV de Habilidades Técnicas
@@ -98,7 +98,7 @@ else:
         st.session_state.setdefault("temporal", "")
 
     # Encabezado principal
-    st.markdown("<h1 style='text-align: center; color: #4CAF50;'>Evaluación de Habilidades Técnicas 4.0</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #4CAF50;'> 4. Evaluación de Habilidades Técnicas 4.0</h1>", unsafe_allow_html=True)
     st.write("<hr style='border-top: 2px solid #4CAF50;'>", unsafe_allow_html=True)
 
     # Formulario de entrada de datos para habilidades técnicas
