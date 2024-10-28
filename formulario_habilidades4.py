@@ -4,7 +4,7 @@ import os
 from fpdf import FPDF
 
 # Clave de acceso definida por ti
-ACCESS_KEY = "MiClaveSecreta2024"
+ACCESS_KEY = "1234"
 
 # Verificar si el usuario ha ingresado la clave correcta
 if 'authenticated' not in st.session_state:
