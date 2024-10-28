@@ -156,7 +156,7 @@ else:
         st.success("Objetivo SMART agregado correctamente.")
         clear_form()
 
-      if not st.session_state.objetivos_smart_df.empty:
+    if not st.session_state.objetivos_smart_df.empty:
         st.header("Resumen de Objetivos SMART")
         st.dataframe(st.session_state.objetivos_smart_df)
         for index, row in st.session_state.objetivos_smart_df.iterrows():
